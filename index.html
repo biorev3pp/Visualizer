@@ -1,573 +1,665 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ULE 360 Visualizer Documentation</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        display: flex;
-      }
 
-      /* Sidebar styles */
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ULE 360 Visualizer Documentation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Sidebar styles */
+    #sidebar {
+      width: 250px;
+      background-color: #f5f5f5;
+      padding: 20px;
+      height: 100vh;
+      overflow-y: auto;
+      position: fixed;
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    #sidebar h2 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    #sidebar ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #sidebar li {
+      margin-bottom: 10px;
+    }
+
+    #sidebar a {
+      text-decoration: none;
+      color: #333;
+      display: block;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    #sidebar a:hover {
+      background-color: #ddd;
+    }
+
+    #sidebar a.active {
+      background-color: #2c3e50;
+      color: white;
+    }
+
+    /* Mobile menu button */
+    #mobile-menu-btn {
+      display: none;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: #2c3e50;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      z-index: 1001;
+      cursor: pointer;
+    }
+
+    /* Main content styles */
+    #main-content {
+      margin-left: 290px;
+      padding: 20px;
+      flex: 1;
+      transition: margin-left 0.3s ease;
+    }
+
+    section {
+      margin-bottom: 20px;
+      padding: 0px 20px;
+      background-color: white;
+      border-radius: 5px;
+      scroll-margin-top: 20px;
+      /* Add space when scrolling to section */
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: #2c3e50;
+    }
+
+    .image-placeholder {
+      background-color: #eee;
+      padding: 20px;
+      text-align: center;
+      margin: 20px 0;
+      border: 1px dashed #ccc;
+    }
+
+    .video-placeholder {
+      background-color: #eee;
+      padding: 20px;
+      text-align: center;
+      margin: 20px 0;
+      border: 1px dashed #ccc;
+    }
+
+    .step {
+      margin-bottom: 15px;
+      padding-left: 20px;
+    }
+
+    /* Smooth scrolling behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    img {
+      width: 60%;
+      height: 500px;
+      max-width: 800px;
+    }
+
+    @media (max-width: 1200px) {
+      img {
+        width: 100%;
+      }
+    }
+
+    /* Mobile styles */
+    @media (max-width: 768px) {
       #sidebar {
-        width: 250px;
-        background-color: #f5f5f5;
-        padding: 20px;
-        height: 100vh;
-        overflow-y: auto;
-        position: fixed;
+        transform: translateX(-100%);
       }
 
-      #sidebar h2 {
-        margin-top: 0;
-        color: #333;
+      #sidebar.open {
+        transform: translateX(0);
       }
 
-      #sidebar ul {
-        list-style-type: none;
-        padding: 0;
-      }
-
-      #sidebar li {
-        margin-bottom: 10px;
-      }
-
-      #sidebar a {
-        text-decoration: none;
-        color: #333;
+      #mobile-menu-btn {
         display: block;
-        padding: 5px;
-        border-radius: 4px;
-        font-weight: bold;
       }
 
-      #sidebar a:hover {
-        background-color: #ddd;
-      }
-
-      /* Main content styles */
       #main-content {
-        margin-left: 290px;
-        padding: 20px;
-        flex: 1;
+        margin-left: 0;
+        padding-top: 60px;
       }
+    }
+  </style>
+</head>
 
-      section {
-        margin-bottom: 20px;
-        padding: 0px 20px;
-        background-color: white;
-        border-radius: 5px;
-        /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
-      }
+<body>
+  <!-- Sidebar with Table of Contents --><button id="mobile-menu-btn">☰</button>
+  <div id="sidebar">
+    <h2 style="margin-top: 30px;">Table of Contents</h2>
 
-      h1,
-      h2,
-      h3 {
-        color: #2c3e50;
-      }
+    <ul>
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#what-is-ule">What is ULE 360 Visualizer?</a></li>
+      <li><a href="#key-features">Key Features and Benefits</a></li>
+      <li><a href="#purpose-scope">Purpose and Scope</a></li>
+      <li><a href="#audience">Audience</a></li>
+      <li><a href="#getting-started">Getting Started</a></li>
+      <li><a href="#design-metadata">Design Metadata</a></li>
+      <li><a href="#controls">Controls & Adjustments</a></li>
+      <li><a href="#search-layer-functionality">Search Layer Functionality</a></li>
+      <li><a href="#customizing">Customizing Home Designs</a></li>
+      <li><a href="#bulk-upload">Demonstrating Bulk Upload</a></li>
+      <li><a href="#send-inquiry">Send Inquiry</a></li>
+    </ul>
+  </div>
 
-      .image-placeholder {
-        background-color: #eee;
-        padding: 20px;
-        text-align: center;
-        margin: 20px 0;
-        border: 1px dashed #ccc;
-      }
+  <!-- Main Content -->
+  <div id="main-content">
+    <h1>ULE 360 Visualizer Documentation</h1>
 
-      .video-placeholder {
-        background-color: #eee;
-        padding: 20px;
-        text-align: center;
-        margin: 20px 0;
-        border: 1px dashed #ccc;
-      }
+    <!-- Introduction Section -->
+    <section id="introduction">
+      <h2>Introduction</h2>
+      <p>
+        Imagine being able to redesign the exterior of your home in minutes without stepping outside or hiring a
+        designer. That's exactly what the <strong>ULE 360 Visualizer</strong> offers. Whether you’re a homeowner
+        dreaming up a makeover, an architect showcasing options to a client, or a builder making critical design
+        decisions, this tool brings your ideas to life with <strong>photorealistic clarity</strong>.
+      </p>
 
-      .step {
-        margin-bottom: 15px;
-        padding-left: 20px;
-        /* border-left: 3px solid #3498db; */
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Sidebar with Table of Contents -->
-    <div id="sidebar">
-      <h2>Table of Contents</h2>
+    
+    </section>
+
+    <!-- What is ULE 360 Visualizer Section -->
+    <section id="what-is-ule">
+      <h2>What is ULE 360 Visualizer?</h2>
+      <p>
+        ULE 360 Visualizer is a powerful, browser-based application designed to let users customize the exterior of
+        USA-based homes. The tool provides an immersive experience where you can mix and match colors, materials, and
+        structural elements like roofs, siding, windows, stucco, trims, and more.
+      </p>
+
+
+      <p>
+        ULE 360 is more than just a visualizer, it's your creative partner. With a <strong>user-friendly interface,
+          real-time previews</strong>, and <strong>detailed customization features</strong>, it helps you explore
+        possibilities with confidence and excitement.
+      </p>
+    </section>
+
+    <!-- Key Features Section -->
+    <section id="key-features">
+      <h2>Key Features and Benefits</h2>
+      <p>Here's what makes ULE 360 stand out:</p>
       <ul>
-        <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#what-is-ule">What is ULE 360 Visualizer?</a></li>
-        <li><a href="#key-features">Key Features and Benefits</a></li>
-        <li><a href="#purpose-scope">Purpose and Scope</a></li>
-        <li><a href="#audience">Audience</a></li>
-        <li><a href="#getting-started">Getting Started</a></li>
-        <li><a href="#design-metadata">Design Metadata</a></li>
-        <li><a href="#controls">Controls & Adjustments</a></li>
-        <li><a href="#customizing">Customizing Home Designs</a></li>
-        <li><a href="#bulk-upload">Demonstrating Bulk Upload</a></li>
-        <li><a href="#send-inquiry">Send Inquiry</a></li>
+        <li>
+          <strong>Real-Time Visualization:</strong> Watch your designs update
+          instantly in life like with natural lighting and shadows.
+        </li>
+        <li>
+          <strong>Material and Color Customization:</strong> Experiment with a
+          wide range of textures, siding styles, paint colors, and surface
+          finishes.
+        </li>
+        <li>
+          <strong>Interactive Layer Controls:</strong> Toggle individual
+          elements like trim, roofing, windows, and doors for customization.
+        </li>
+        <li>
+          <strong>Easy-to-Use Interface:</strong> Designed for all users no
+          technical expertise required.
+        </li>
+        <li>
+          <strong>Cloud-Based Access:</strong> Use it anywhere, anytime no
+          installations or high-end hardware needed.
+        </li>
+        <li>
+          <strong>Presentation-Ready Output:</strong> Share your finished
+          designs with clients, family, or project teams as high-quality
+          visuals.
+        </li>
       </ul>
-    </div>
+      <p>
+        With ULE 360 Visualizer, transforming your home's exterior has never
+        been easier or more exciting!
+      </p>
 
-    <!-- Main Content -->
-    <div id="main-content">
-      <h1>ULE 360 Visualizer Documentation</h1>
-
-      <!-- Introduction Section -->
-      <section id="introduction">
-        <h2>Introduction</h2>
-        <p>
-          Imagine being able to redesign the exterior of your home in minutes without stepping outside or hiring a designer. That's exactly what the  <strong>ULE 360 Visualizer</strong> offers. Whether you’re a homeowner dreaming up a makeover, an architect showcasing options to a client, or a builder making critical design decisions, this tool brings your ideas to life with <strong>photorealistic clarity</strong>.
-        </p>
-
-        <!-- Placeholder for image/video -->
-        <!-- <div class="image-placeholder">
-          [Insert Introduction Image/Video Here]
-        </div> -->
-      </section>
-
-      <!-- What is ULE 360 Visualizer Section -->
-      <section id="what-is-ule">
-        <h2>What is ULE 360 Visualizer?</h2>
-        <p>
-         ULE 360 Visualizer is a powerful, browser-based application designed to let users customize the exterior of USA-based homes. The tool provides an immersive experience where you can mix and match colors, materials, and structural elements like roofs, siding, windows, stucco, trims, and more.
-        </p>
-
-        <h3>Your Creative Partner</h3>
-        <p>
-        ULE 360 is more than just a visualizer, it's your creative partner. With a <strong>user-friendly interface, real-time  previews</strong>, and <strong>detailed customization features</strong>, it helps you explore possibilities with confidence and excitement.
-        </p>
-      </section>
-
-      <!-- Key Features Section -->
-      <section id="key-features">
-        <h2>Key Features and Benefits</h2>
-        <p>Here's what makes ULE 360 stand out:</p>
-        <ul>
-          <li>
-            <strong>Real-Time Visualization:</strong> Watch your designs update
-            instantly in life like with natural lighting and shadows.
-          </li>
-          <li>
-            <strong>Material and Color Customization:</strong> Experiment with a
-            wide range of textures, siding styles, paint colors, and surface
-            finishes.
-          </li>
-          <li>
-            <strong>Interactive Layer Controls:</strong> Toggle individual
-            elements like trim, roofing, windows, and doors for customization.
-          </li>
-          <li>
-            <strong>Easy-to-Use Interface:</strong> Designed for all users no
-            technical expertise required.
-          </li>
-          <li>
-            <strong>Cloud-Based Access:</strong> Use it anywhere, anytime no
-            installations or high-end hardware needed.
-          </li>
-          <li>
-            <strong>Presentation-Ready Output:</strong> Share your finished
-            designs with clients, family, or project teams as high-quality
-            visuals.
-          </li>
-        </ul>
-        <p>
-          With ULE 360 Visualizer, transforming your home's exterior has never
-          been easier or more exciting!
-        </p>
-
-        <!-- Placeholder for image/video -->
-        <!-- <div class="image-placeholder">
+      <!-- Placeholder for image/video -->
+      <!-- <div class="image-placeholder">
           [Insert Key Features Image/Video Here]
         </div> -->
-      </section>
-    
-      <hr>
+    </section>
 
-      <!-- Purpose and Scope Section -->
-      <section id="purpose-scope">
-        <h2>Purpose and Scope</h2>
+    <hr>
 
-        <h3>Objectives of the Guide</h3>
+    <!-- Purpose and Scope Section -->
+    <section id="purpose-scope">
+      <h2>Purpose and Scope</h2>
+
+      <h3>Objectives of the Guide</h3>
+      <p>
+        The main objective of this guide is to help users navigate and utilize
+        the ULE 360 Visualizer effectively. It aims to provide clear,
+        step-by-step instructions for accessing and using the platform's
+        features, from basic navigation to advanced customization. This
+        document is designed to support users at all levels of experience,
+        from first-time visitors to seasoned professionals, by offering both
+        foundational knowledge and expert tips.
+      </p>
+
+      <h3>Scope of Coverage</h3>
+      <p>
+        This guide covers all major aspects of the ULE 360 Visualizer,
+        including system requirements, user interface components, feature
+        functionality, best practices, and troubleshooting tips. The document
+        is limited to the current version of the visualizer and does not
+        include instructions for external integrations or third-party tools
+        unless otherwise noted.
+      </p>
+    </section>
+    <hr>
+
+    <!-- Audience Section -->
+    <section id="audience">
+      <h2>Audience</h2>
+
+      <h3>Intended Users</h3>
+      <p>
+        This guide is intended for a broad range of users including
+        homeowners, design consultants, contractors, architects, and sales
+        representatives who wish to explore, design, or present exterior
+        building concepts using the ULE 360 Visualizer. Whether you're a
+        first-time user with minimal design experience or a seasoned
+        professional in the building industry, this document is crafted to
+        accommodate different knowledge levels and use cases.
+      </p>
+
+      <h3>User Requirements</h3>
+      <p>
+        To benefit most from this guide and the visualizer platform, users
+        should have a basic understanding of how to operate a web browser and
+        navigate online interfaces. While no advanced technical knowledge is
+        required, familiarity with design principles or material selection can
+        enhance the user experience. Access to a desktop or tablet device with
+        internet connectivity is recommended for optimal interaction with the
+        tool.
+      </p>
+
+
+
+    </section>
+    <hr>
+
+    <!-- Getting Started Section -->
+    <section id="getting-started">
+      <h2>Getting Started</h2>
+
+      <h3>Accessing the Visualizer</h3>
+      <p>To begin using the ULE 360 Visualizer, follow these steps:</p>
+      <div class="step">
         <p>
-          The main objective of this guide is to help users navigate and utilize
-          the ULE 360 Visualizer effectively. It aims to provide clear,
-          step-by-step instructions for accessing and using the platform's
-          features, from basic navigation to advanced customization. This
-          document is designed to support users at all levels of experience,
-          from first-time visitors to seasoned professionals, by offering both
-          foundational knowledge and expert tips.
+          1. Open your preferred web browser (Chrome, Firefox, Safari, or
+          Edge).
         </p>
-
-        <h3>Scope of Coverage</h3>
+      </div>
+      <div class="step">
         <p>
-          This guide covers all major aspects of the ULE 360 Visualizer,
-          including system requirements, user interface components, feature
-          functionality, best practices, and troubleshooting tips. The document
-          is limited to the current version of the visualizer and does not
-          include instructions for external integrations or third-party tools
-          unless otherwise noted.
+          2. Navigate to the following URL:<a href=" https://sitterlehomes.ule360.com/visualizer/MTQ3?view=scheme&scheme=cimarron-hills-scheme
+" target="_blank">ULE 360 Visualizer</a>
+
         </p>
-      </section>
-      <hr>
-
-      <!-- Audience Section -->
-      <section id="audience">
-        <h2>Audience</h2>
-
-        <h3>Intended Users</h3>
+      </div>
+      <div class="step">
         <p>
-          This guide is intended for a broad range of users including
-          homeowners, design consultants, contractors, architects, and sales
-          representatives who wish to explore, design, or present exterior
-          building concepts using the ULE 360 Visualizer. Whether you're a
-          first-time user with minimal design experience or a seasoned
-          professional in the building industry, this document is crafted to
-          accommodate different knowledge levels and use cases.
+          3. Sign in using your credentials or register a new account if
+          required.
         </p>
-
-        <h3>User Requirements</h3>
+      </div>
+      <div class="step">
         <p>
-          To benefit most from this guide and the visualizer platform, users
-          should have a basic understanding of how to operate a web browser and
-          navigate online interfaces. While no advanced technical knowledge is
-          required, familiarity with design principles or material selection can
-          enhance the user experience. Access to a desktop or tablet device with
-          internet connectivity is recommended for optimal interaction with the
-          tool.
+          4. Once logged in, you will be taken directly to the visualizer tool
+          where you can begin customizing.
         </p>
-     
-    
+      </div>
+      <p>
+        Tip: Use a desktop or tablet device in landscape mode for the best
+        experience.
+      </p>
 
-      </section><hr>
+      <h3>System Requirements</h3>
+      <p>
+        To ensure optimal performance, the following system requirements are
+        recommended:
+      </p>
+      <ul>
+        <li>
+          <strong>Operating System:</strong> Windows Xp or later, macOS or any
+          Unix based operating system
+        </li>
+        <li>
+          <strong>Browser:</strong> Chrome, Firefox, Safari, or Edge etc.
+        </li>
+        <li>
+          <strong>Internet:</strong> Stable broadband connection (at least 5
+          Mbps)
+        </li>
+        <li>
+          <strong>Hardware:</strong> Minimum 4 GB RAM, processor above (Intel
+          i3/Ryzen 3 or equivalent)
+        </li>
+        <li><strong>Screen Resolution:</strong> 1024x768 or higher</li>
+      </ul>
+      <p>
+        Before launching the tool, ensure your browser has JavaScript enabled
+        and pop-up blockers disabled for the site. This ensures all features
+        load correctly and you have a smooth, uninterrupted experience.
+      </p>
 
-      <!-- Getting Started Section -->
-      <section id="getting-started">
-        <h2>Getting Started</h2>
-
-        <h3>Accessing the Visualizer</h3>
-        <p>To begin using the ULE 360 Visualizer, follow these steps:</p>
-        <div class="step">
-          <p>
-            1. Open your preferred web browser (Chrome, Firefox, Safari, or
-            Edge).
-          </p>
-        </div>
-        <div class="step">
-          <p>
-            2. Navigate to the following URL:<a href=" https://sitterlehomes.ule360.com/visualizer/MTQ3?view=scheme&scheme=cimarron-hills-scheme
-">ULE 360 Visualizer</a>
-              
-          </p>
-        </div>
-        <div class="step">
-          <p>
-            3. Sign in using your credentials or register a new account if
-            required.
-          </p>
-        </div>
-        <div class="step">
-          <p>
-            4. Once logged in, you will be taken directly to the visualizer tool
-            where you can begin customizing.
-          </p>
-        </div>
-        <p>
-          Tip: Use a desktop or tablet device in landscape mode for the best
-          experience.
-        </p>
-
-        <h3>System Requirements</h3>
-        <p>
-          To ensure optimal performance, the following system requirements are
-          recommended:
-        </p>
-        <ul>
-          <li>
-            <strong>Operating System:</strong> Windows Xp or later, macOS or any
-            Unix based operating system
-          </li>
-          <li>
-            <strong>Browser:</strong> Chrome, Firefox, Safari, or Edge etc.
-          </li>
-          <li>
-            <strong>Internet:</strong> Stable broadband connection (at least 5
-            Mbps)
-          </li>
-          <li>
-            <strong>Hardware:</strong> Minimum 4 GB RAM, processor above (Intel
-            i3/Ryzen 3 or equivalent)
-          </li>
-          <li><strong>Screen Resolution:</strong> 1024x768 or higher</li>
-        </ul>
-        <p>
-          Before launching the tool, ensure your browser has JavaScript enabled
-          and pop-up blockers disabled for the site. This ensures all features
-          load correctly and you have a smooth, uninterrupted experience.
-        </p>
-
-        <!-- Placeholder for image/video -->
-        <!-- <div class="image-placeholder">
+      <!-- Placeholder for image/video -->
+      <!-- <div class="image-placeholder">
           [Insert Getting Started Image/Video Here]
         </div> -->
-      </section>
-        <hr>
+    </section>
+    <hr>
 
-      <!-- Design Metadata Section -->
-      <section id="design-metadata">
-        <h2>Design Metadata - User Interface Overview</h2>
+    <!-- Design Metadata Section -->
+    <section id="design-metadata">
+      <h2>Design Metadata - User Interface Overview</h2>
 
-        <h3>User Details of the Design</h3>
-        <p>
-          To view the user details of this design, please click on the three
-          lines.
-        </p>
-        <!-- <img src="user image 1.png" alt="User Details" /> -->
-         <div style="text-align: center;">
-  <img src="user image 1.png" alt="User Details" style=" max-width: 600px; height: 600px;">
-</div>
-        <p>
-          The subsequent section provides a clear presentation of the user's
-          details, specifically highlighting Embry Maynard as the registered
-          user.
-        </p> <div style="text-align: center;">
-  <img src="user image 2.png" alt="User Details" style=" max-width: 600px; height: 600px;">
-</div>
+      <h3>User Details of the Design</h3>
+      <div style="text-align: center;"><video id="myVideo" width="60%"  controls>
+          <source src="videos/Check User Info.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video></div>
 
-        <!-- Placeholder for image -->
-        <!-- <div class="image-placeholder">[Insert User Details Image Here]</div> -->
+      <p>
+        To view the user details of this design, please click on the three
+        lines.
+      </p>
+      <!-- <img src="user image 1.png" alt="User Details" /> -->
+      <div style="text-align: center;">
+        <img src="user image 1.png" alt="User Details" class="img">
+      </div>
+      <p>
+        The subsequent section provides a clear presentation of the user's
+        details, specifically highlighting Embry Maynard as the registered
+        user.
+      </p>
+      <div style="text-align: center;">
+        <img src="user image 2.png" alt="User Details" class="img">
+      </div>
 
-        <h3>Elevation Layer Details Overview</h3>
-        <p>
-          To access the complete specifications for our house, which encompass
-          details about colour, structure, and texture, please click on the
-          layer icon highlighted within the red box.
-        </p>
-        <div style="text-align: center;">
-  <img src="elevation layer 1.png" alt="User Details" style=" max-width: 600px; height: 600px;">
-</div>
-        <p>
-          This will provide a comprehensive overview of all the design elements
-          and materials used throughout the property, ensuring that everything
-          aligns with our vision and requirements.
-        </p>
-        <div style="text-align: center;">
-  <img src="elevation layer 2.png" alt="User Details" style=" max-width: 600px; height: 600px;">
-</div>
+      <!-- Placeholder for image -->
+      <!-- <div class="image-placeholder">[Insert User Details Image Here]</div> -->
 
-        <!-- Placeholder for image -->
-        <!-- <div class="image-placeholder">
+      <h3>Elevation Layer Details Overview</h3>
+      <div style="text-align: center;"><video id="myVideo" width="60%"  controls>
+          <source src="videos/Elevation Layer Details.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video></div>
+      <p>
+        To access the complete specifications for our house, which encompass
+        details about colour, structure, and texture, please click on the
+        layer icon highlighted within the red box.
+      </p>
+      <div style="text-align: center;">
+        <img src="elevation layer 1.png" alt="User Details" class="img">
+      </div>
+      <p>
+        This will provide a comprehensive overview of all the design elements
+        and materials used throughout the property, ensuring that everything
+        aligns with our vision and requirements.
+      </p>
+      <div style="text-align: center;">
+        <img src="elevation layer 2.png" alt="User Details" class="img">
+      </div>
+
+      <!-- Placeholder for image -->
+      <!-- <div class="image-placeholder">
           [Insert Elevation Details Image Here]
         </div> -->
 
-      </section>
-      <hr>
+    </section>
+    <hr>
 
-      <!-- Controls & Adjustments Section -->
-      <section id="controls">
-        <h2>Controls & Adjustments</h2>
+    <!-- Controls & Adjustments Section -->
+    <section id="controls">
+      <h2>Controls & Adjustments</h2>
 
-        <h3>Elevation Design Controls</h3>
-        <ul>
-          <li>
-            <strong>Zoom In:</strong> Click this button to magnify the elevation
-            design for a closer look at details. This feature allows you to
-            focus on specific areas of the design.
-          </li>
-          <li>
-            <strong>Zoom Out:</strong> Use this option to reduce the view of the
-            elevation design. This is helpful for getting an overview of the
-            entire layout.
-          </li>
-          <li>
-            <strong>Reset:</strong> The reset button will revert the elevation
-            design to its original state. This is useful if you want to clear
-            any zoom adjustments or changes made during your review.
-          </li>
-          <li>
-            <strong>Download:</strong> If you like the elevation design and wish
-            to keep a copy for your records or further review, click the
-            download button. This will allow you to save the design in your
-            preferred format.
-          </li>
-          <li>
-            <strong>View Full Screen:</strong> To enhance your viewing
-            experience, click this option to display the elevation design in
-            full screen. This allows for a more immersive look at the details
-            without any distractions from other interface elements.
-          </li>
-        </ul>
+      <h3>Elevation Design Controls</h3>
+      <div style="text-align: center;"><video id="myVideo" width="60%"  controls>
+          <source src="videos/ZoomIn, ZoomOut, Reset, Fullscreen, Download.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video></div>
+      <ul>
+        <li>
+          <strong>Zoom In:</strong> Click this button to magnify the elevation
+          design for a closer look at details. This feature allows you to
+          focus on specific areas of the design.
+        </li>
+        <li>
+          <strong>Zoom Out:</strong> Use this option to reduce the view of the
+          elevation design. This is helpful for getting an overview of the
+          entire layout.
+        </li>
+        <li>
+          <strong>Reset:</strong> The reset button will revert the elevation
+          design to its original state. This is useful if you want to clear
+          any zoom adjustments or changes made during your review.
+        </li>
+        <li>
+          <strong>Download:</strong> If you like the elevation design and wish
+          to keep a copy for your records or further review, click the
+          download button. This will allow you to save the design in your
+          preferred format.
+        </li>
+        <li>
+          <strong>View Full Screen:</strong> To enhance your viewing
+          experience, click this option to display the elevation design in
+          full screen. This allows for a more immersive look at the details
+          without any distractions from other interface elements.
+        </li>
+      </ul>
+      <div style="text-align: center;">
+        <img src="control and adjustment 1.png" alt="User Details" class="img">
+      </div>
+ 
+ <hr>
+      <!-- Placeholder for image -->
+      <!-- <div class="image-placeholder">[Insert Design Controls Image Here]</div> -->
+<section id="search-layer-functionality">
+      <h2>Search Layer Functionality</h2>
+      <p>Search Layer feature allows users to efficiently search for specific layers based on selected options.</p>
+      <div style="text-align: center;"><video id="myVideo" width="60%"  controls>
+          <source src="videos/Search layer.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video></div>
+      <p>
+        The users can easily select a specific option, such as trims, and subsequently apply their search to swiftly
+        locate the desired layer.
+      </p>
+      <div style="text-align: center;">
+        <img src="search layer 1.png" alt="User Details" class="img">
+      </div>
+
+
+
+
+
+      <p>
+        This streamlined process enhances user experience by making it easier to locate and apply specific layers within
+        the application.
+      </p>
+</section>
+
+   
+    <hr>
+    <!-- Customizing Home Designs Section -->
+    <section id="customizing">
+      <h2>
+        Customizing Home Designs: Elevation Layers, Modifications, and Saving
+        Color Schemes
+      </h2>
+      <p>
+       The user can modify and save a custom color scheme for design settings these features.
+      </p>
+
+      <h3>Modifying Elevation Design</h3>
+      <div style="text-align: center;"><video id="myVideo" width="60%"  controls>
+          <source src="videos/Modifying Elevation Design.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video></div>
+     
+
+      <div class="step">
+        <p>Step 1: Click on the 'Scheme' button to proceed</p>
         <div style="text-align: center;">
-  <img src="control and adjustment 1.png" alt="User Details" style=" max-width: 600px; height: 600px;">
-</div>
-
-        <!-- Placeholder for image -->
-        <!-- <div class="image-placeholder">[Insert Design Controls Image Here]</div> -->
-        
-        <h3>Search Layer Functionality</h3>
+          <img src="customizing 1.png" alt="customizing 1" class="img">
+        </div>
+      </div>
+      <div class="step">
         <p>
-          In the attached images, we demonstrate the Search Layer functionality.
-          This feature allows users to efficiently search for specific layers
-          based on selected options.
+          Step 2: Next, click on the desired elevation to select it for
+          further adjustments
         </p>
-    
-
-        <!-- Placeholder for images -->
-        <div class="">
-         
-          <p>
-            The image prominently features the Search Layer functionality,
-            highlighted within a red box to underscore its significance in the
-            user interface.
-          </p>    <div style="text-align: center;">
-  <img src="search layer 1.png" alt="User Details" style=" max-width: 600px; height: 600px;">
-</div>
+        <div style="text-align: center;">
+          <img src="customizing 2.png" alt="customizing 2" class="img">
         </div>
-        
-        <div class="">
-          
-          <p>
-            The image below illustrates how users can easily select a specific
-            option, such as trims, and subsequently apply their search to
-            swiftly locate the desired layer.
-          </p><div style="text-align: center;">
-  <img src="search layer 2.png" alt="User Details" style=" max-width: 600px; height: 600px;">
-</div>
-          
-        </div>
-
-        <div class="">
-        
-          <p>
-            The image below illustrates that after clicking on "Save as Colour
-            Scheme" a dialog box appears, allowing you to create a new scheme.
-            Additionally, if you wish to make any changes, you can also edit the
-            existing scheme.
-          </p>
-        </div><div style="text-align: center;">
-  <img src="search layer 3.png" alt="User Details" style=" max-width: 800px; height: 500px;">
-</div>
-
+      </div>
+      <div class="step">
         <p>
-          This streamlined process enhances user experience by making it easier
-          to locate and apply specific layers within the application.
+          Step 3: To make changes to this elevation, click on the 'Modify'
+          option
         </p>
-      </section>
-      <hr>
-      <!-- Customizing Home Designs Section -->
-      <section id="customizing">
-        <h2>
-          Customizing Home Designs: Elevation Layers, Modifications, and Saving
-          Color Schemes
-        </h2>
+        <div style="text-align: center;">
+          <img src="customizing 3.png" alt="customizing 3" class="img">
+        </div>
+      </div>
+      <div class="step">
         <p>
-          This section provides a step-by-step guide on modifying and saving a
-          custom color scheme for design settings.
+         Step 4: Now, on the Stucco layer, select the desired option.
         </p>
+        <div style="text-align: center;">
+          <img src="customizing 4.png" alt="customizing 4" class="img">
+        </div>
+      </div>
+      <div class="step">
+        <p>
+          Step 5: Now, click on the 'Trim' option to proceed and select the
+          desired layer
+        </p>
+        <div style="text-align: center;">
+          <img src="customizing 5.png" alt="customizing 5" class="img">
+        </div>
+      </div>
+      <div class="step">
+        <p>
+          Step 6: We can also manually add the option. To do this, click on
+          the 'Add Layer' option
+        </p>
+        <div style="text-align: center;">
+          <img src="customizing 6.png" alt="customizing 6" class="img">
+        </div>
+      </div>
+      <div class="step">
+        <p>
+          Step 7: Three options will appear: Google Library, Library, and Add
+          New Layer. Select the 'Add New Layer' button
+        </p>
+        <div style="text-align: center;">
+          <img src="customizing 7.png" alt="customizing 7" class="img">
+        </div>
+      </div>
+      <div class="step">
+        <p>
+         Step 8: If you want to upload from your local device click on choose file.
+        </p>
+        <div style="text-align: center;">
+          <img src="customizing 8.png" alt="customizing 8" class="img">
+        </div>
+      </div>
+      <div class="step">
+        <p>
+          Step 9: Select image from your local directory and click open.
+        </p>
+        <div style="text-align: center;">
+          <img src="customizing 9.png" alt="customizing 9" class="img">
+        </div>
+      </div>
+      <div class="step">
+        <p>
+          Step 10: Give Layer Name, Product Code, and Manufacturer Name as desired.
+        </p>
+        <div style="text-align: center;">
+          <img src="customizing 10.png" alt="customizing 10" class="img">
+        </div>
+      </div>
+      <div class="step">
+        <p>
+          Step 11: If you want to use color from your screen select color picker.
+        </p>
+        <div style="text-align: center;">
+          <img src="customizing 11.png" alt="customizing 11" class="img">
+        </div>
+      </div>
+      <div class="step">
+        <p>
+          Step 12: After selecting the desired color from your local device or color picker, click on the save layer
+          option to save the layer.
+        </p>
+        <div style="text-align: center;">
+          <img src="customizing 12.png" alt="customizing 12" class="img">
+        </div>
+      </div>
+      <div class="step">
+        <p>
+          Step 13: Now, click on the option that we uploaded, and the changes will be reflected
+        </p>
+        <div style="text-align: center;">
+          <img src="customizing 13.png" alt="customizing 13" class="img">
+        </div>
 
-        <h3>Modifying Elevation Design</h3>
-        <p>
-          Users can select and modify elevations by clicking on the 'Scheme' and
-          'Modify' options.
-        </p>
-        <p>
-          Changes can be applied to the Stucco layer by selecting options like
-          'Purity'.
-        </p>
-
-        <div class="step">
-          <p>Step 1: Click on the 'Scheme' button to proceed</p>
-        </div>
-        <div class="step">
-          <p>
-            Step 2: Next, click on the desired elevation to select it for
-            further adjustments
-          </p>
-        </div>
-        <div class="step">
-          <p>
-            Step 3: To make changes to this elevation, click on the 'Modify'
-            option
-          </p>
-        </div>
-        <div class="step">
-          <p>
-            Step 4: Now, on the Stucco layer, select the desired option. In this
-            case, I have chosen the 'Purity' option. Observe the changes applied
-            to the elevation, where the stucco will be updated accordingly.
-          </p>
-        </div>
-        <div class="step">
-          <p>
-            Step 5: Now, click on the 'Trim' option to proceed and select the
-            desired layer
-          </p>
-        </div>
-        <div class="step">
-          <p>
-            Step 6: We can also manually add the option. To do this, click on
-            the 'Add Layer' option
-          </p>
-        </div>
-        <div class="step">
-          <p>
-            Step 7: Three options will appear: Google Library, Library, and Add
-            New Layer. Select the 'Add New Layer' button
-          </p>
-        </div>
-        <div class="step">
-          <p>
-            Step 8: After selecting the desired color from your local device, it
-            will be automatically uploaded. and click on the save layer option.
-            to save the layer
-          </p>
-        </div>
-        <div class="step">
-          <p>
-            Step 9: Now, click on the option that we uploaded, and the changes
-            will be reflected.
-          </p>
-        </div>
-        <div class="step">
-          <p>
-            Step 10: Give Layer Name, Product Code, and Manufacturer Name as desired.
-          </p>
-        </div>
-        <div class="step">
-          <p>
-            Step 11: If you want to use color from your screen select color picker.
-          </p>
-        </div>
-        <div class="step">
-          <p>
-            Step 12: After selecting the desired color from your local device or color picker, click on the save layer option to save the layer.
-          </p>
-        </div>
-        <div class="step">
-          <p>
-           Step 13: Now, click on the option that we uploaded, and the changes will be reflected
-          </p>
-        <!-- Placeholder for images -->
-        <!-- <div class="image-placeholder">
-          [Insert Modifying Elevation Images Here - One for each step or key
-          steps]
-        </div> -->
 
         <h3>Adding and Saving Layers</h3>
+
         <p>
-          New layers can be added manually by selecting 'Add New Layer' and
-          uploading desired colors.
+          The user can add new layers manually by selecting 'Add New Layer' and uploading desired colors.
         </p>
-        <p>
-          The document outlines steps to save a custom color scheme for future
-          use or consistency.
-        </p>
+        <div style="text-align: center;"><video id="myVideo" width="60%"  controls>
+            <source src="videos/Save as a scheme.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video></div>
 
         <div class="step">
           <p>Step 1: Click on "Save as Colour Scheme".</p>
+          <div style="text-align: center;">
+            <img src="adding and saving layer 1.png" alt="adding and saving layer 1" class="img">
+          </div>
         </div>
         <div class="step">
           <p>
@@ -576,123 +668,235 @@
             options: "Edit Scheme" and "Create New Scheme." To proceed, click on
             the "Create New Scheme" button.
           </p>
+          <div style="text-align: center;">
+            <img src="adding and saving layer 2.png" alt="adding and saving layer 2" class="img">
+          </div>
         </div>
         <div class="step">
           <p>
             Step 3: Once the scheme is saved, you can verify it by clicking on
             the "Scheme" button to view your saved configuration.
           </p>
+          <div style="text-align: center;">
+            <img src="adding and saving layer 3.png" alt="adding and saving layer 3" class="img">
+          </div>
         </div>
         <div class="step">
           <p>
             Step 4: Click on the scheme you just created to either apply it or
             review its settings.
           </p>
+          <div style="text-align: center;">
+            <img src="adding and saving layer 4.png" alt="adding and saving layer 4" class="img">
+          </div>
         </div>
 
-        <!-- Placeholder for images
-        <div class="image-placeholder">[Insert Adding Layers Images Here]</div> -->
 
         <h3>Google Library Integration</h3>
+        <div style="text-align: center;"><video id="myVideo" width="60%"  controls>
+            <source src="videos/Google Library.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video></div>
 
         <div class="step">
           <p>Step 1: To get started, click on the 'Add Layer' option.</p>
+          <div style="text-align: center;">
+            <img src="google library 1.png" alt="google library 1" class="img">
+          </div>
         </div>
         <div class="step">
-          <p>Step 2: Select the Google library option.</p>
-        </div>
-        <div class="step">
-          <p>
-            Step 3: In the popup, three options will appear: Google Library,
-            Library, and Add New Layer then Click on the 'Google Library' option
-          </p>
-        </div>
-        <div class="step">
-          <p>
-            Step 4: Next, locate the specific option or feature you are seeking.
-          </p>
+          <p>Step 2: Three options will appear: Google Library, Library, and Add New Layer then Click on the 'Google Library' option.</p>
+          <div style="text-align: center;">
+            <img src="google library 2.png" alt="google library 2" class="img">
+          </div>
         </div>
         <div class="step">
           <p>
-            Step 5: Next, choose the Stucco type that you find most appealing.
+           Step 3: Now search the option you want to add as desired.
           </p>
-        </div>
-        <div class="step">
-          <p>Step 6: To save the layer, click on the "Save Layer" option.</p>
-        </div>
-        <div class="step">
-          <p>
-            Step 7: The newly added layer has been successfully saved and is now
-            accessible under the Stucco option for future use.
-          </p>
+          <div style="text-align: center;">
+            <img src="google library 3.png" alt="google library 3" class="img">
+          </div>
         </div>
         <div class="step">
           <p>
-            Step 8: To see the changes that have been applied, click on the
-            uploaded layer located in the Stucco section.
+            Step 4: Next, choose the Stucco type that you find most appealing.
           </p>
+          <div style="text-align: center;">
+            <img src="google library 5.png" alt="google library 5" class="img">
+          </div>
+        </div>
+        <div class="step">
+          <p>
+            Step 5: Now give the Layer Name, Product Code, Manufacturer Name as desired and then to save the layer, click on the "Save Layer" option.
+          </p>
+          <div style="text-align: center;">
+            <img src="google library 6.png" alt="google library 6" class="img">
+          </div>
+        </div>
+        <div class="step">
+          <p>Step 6: The newly added layer has been successfully saved and is now accessible under the Stucco option for future use.</p>
+        </div>
+        <div style="text-align: center;">
+          <img src="google library 7.png" alt="google library 7" class="img">
+        </div>
+        <div class="step">
+          <p>
+            Step 7: To see the changes that have been applied, click on the uploaded layer located in the Stucco section.
+          </p>
+          <div style="text-align: center;">
+            <img src="google library 8.png" alt="google library 8" class="img">
+          </div>
         </div>
 
-        <!-- Placeholder for images -->
-        <!-- <div class="image-placeholder">
-          [Insert Google Library Integration Images Here]
-        </div> -->
-      </section>
-      <hr>
 
-      <!-- Bulk Upload Section -->
-      <section id="bulk-upload">
-        <h2>Demonstrating Bulk Upload</h2>
+  
+    </section>
+    <hr>
+
+    <!-- Bulk Upload Section -->
+    <section id="bulk-upload">
+      <h2>Demonstrating Bulk Upload</h2>
+      <p>Bulk Upload feature allows users to upload bulk layers.</p>
+      <div style="text-align: center;"><video id="myVideo" width="60%"  controls>
+          <source src="videos/Bulk Upload.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video></div>
+    
+
+      <div class="step">
         <p>
-          In the attached images, we demonstrate the Bulk Upload functionality.
-          This feature allows users to upload bulk layers.
+          Step 1: Click on the "Manage Layer" option to access the bulk upload
+          feature.
         </p>
-
-        <div class="step">
-          <p>
-            Step 1: Click on the "Manage Layer" option to access the bulk upload
-            feature.
-          </p>
+        <div style="text-align: center;">
+          <img src="Bulk Upload 1.png" alt="Bulk Upload 1" class="img">
         </div>
-        <div class="step">
-          <p>Step 2: Select the bulk upload option.</p>
+      </div>
+      <div class="step">
+        <p>Step 2: Select the bulk upload option.</p>
+        <div style="text-align: center;">
+          <img src="Bulk Upload 2.png" alt="Bulk Upload 2" class="img">
         </div>
-        <div class="step">
-          <p>
-            Step 3: Upload the CSV file by either using the "Select CSV File"
-            option or by dragging and dropping the file.
-          </p>
-        </div>
-        <div class="step">
-          <p>Step 4: Finally, click on "Continue" to save your upload.</p>
-        </div>
-
-        <!-- Placeholder for images -->
-        <!-- <div class="image-placeholder">[Insert Bulk Upload Images Here]</div> -->
-      </section>
-      <hr>
-      <!-- Send Inquiry Section -->
-      <section id="send-inquiry">
-        <h2>Send Inquiry - Connect with Our Team</h2>
+      </div>
+      <div class="step">
         <p>
-          To send an inquiry, click on the button labeled "send inquiry," which
-          is located below the image and highlighted with a red color border.
+          Step 3: Upload the CSV file by either using the "Select CSV File"
+          option or by dragging and dropping the file.
         </p>
+        <div style="text-align: center;">
+          <img src="Bulk Upload 3.png" alt="Bulk Upload 3" class="img">
+        </div>
+      </div>
+      <div class="step">
+        <p>Step 4: Finally, click on "Continue" to save your upload.</p>
+      </div>
+      <div style="text-align: center;">
+        <img src="Bulk Upload 4.png" alt="Bulk Upload 4" class="img">
+      </div>
 
-        <p>
-          If you have any questions or concerns regarding bugs or potential
-          enhancements, we encourage you to submit your inquiries by entering
-          your query in the space provided below.
-        </p>
+    </section>
+    <hr>
+    <!-- Send Inquiry Section -->
+    <section id="send-inquiry">
+      <h2>Send Inquiry - Connect with Our Team</h2>
+      <div style="text-align: center;"><video id="myVideo" width="60%"  controls>
+          <source src="videos/Send Inquiry.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video></div>
+      <p>
+        To send an inquiry, click on the button labeled "send inquiry," which
+        is located below the image and highlighted with a red color border.
+      </p>
+      <div style="text-align: center;">
+        <img src="Send Enquiry 1.png" alt="Send Enquiry 1" class="img">
+      </div>
 
-        <p>
-          To proceed, simply type your question in the designated area and then
-          click the submit button.
-        </p>
+      <p>
+        If you have any questions or concerns regarding bugs or potential
+        enhancements, we encourage you to submit your inquiries by entering
+        your query in the space provided below.
+      </p>
 
-        <!-- Placeholder for image -->
-        <!-- <div class="image-placeholder">[Insert Send Inquiry Image Here]</div> -->
-      </section>
-    </div>
-  </body>
+      <p>
+        To proceed, simply type your question in the designated area and then
+        click the submit button.
+      </p>
+      <div style="text-align: center;">
+        <img src="Send Enquiry 2.png" alt="Send Enquiry 2" class="img">
+      </div>
+
+
+    </section>
+  </div>
+  <script>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-btn').addEventListener('click', function () {
+      document.getElementById('sidebar').classList.toggle('open');
+    });
+
+    // Smooth scrolling and active link highlighting
+    document.addEventListener('DOMContentLoaded', function () {
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      // Function to set active link
+      function setActiveLink() {
+        const scrollPosition = window.scrollY;
+
+        navLinks.forEach(link => {
+          const section = document.querySelector(link.getAttribute('href'));
+          if (
+            section.offsetTop <= scrollPosition + 100 &&
+            section.offsetTop + section.offsetHeight > scrollPosition + 100
+          ) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+      const video = document.getElementById('myVideo');
+
+      function togglePlay() {
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      }
+      // Set active link on scroll
+      window.addEventListener('scroll', setActiveLink);
+
+      // Set active link on click
+      navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          // Close mobile menu if open
+          if (window.innerWidth <= 768) {
+            document.getElementById('sidebar').classList.remove('open');
+          }
+
+          // Remove active class from all links
+          navLinks.forEach(lnk => lnk.classList.remove('active'));
+
+          // Add active class to clicked link
+          this.classList.add('active');
+
+          // Smooth scroll to section
+          const targetId = this.getAttribute('href');
+          const targetSection = document.querySelector(targetId);
+          window.scrollTo({
+            top: targetSection.offsetTop - 20,
+            behavior: 'smooth'
+          });
+        });
+      });
+
+      // Set initial active link
+      setActiveLink();
+    });
+  </script>
+</body>
+
 </html>
