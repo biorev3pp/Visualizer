@@ -21,6 +21,8 @@
       --link-hover: #ddd;
       --active-link-bg: #2c3e50;
       --active-link-color: white;
+      --step-bg: #f9f9f9;
+      --step-border: #3498db;
     }
 
     .theme-switch-wrapper {
@@ -87,6 +89,8 @@
       --link-hover: #333;
       --active-link-bg: #3498db;
       --active-link-color: #fff;
+      --step-bg: #1f1f1f;
+--step-border: #3498db;
     }
 
     html {
@@ -199,9 +203,14 @@
     }
 
     .step {
-      margin-bottom: 15px;
-      padding-left: 20px;
+       margin: 15px 0px;
+  padding: 15px;
+  background-color: var(--step-bg);
+  border-radius: 4px;
+  border-left: 3px solid var(--step-border);
+  color: var(--text-color);
     }
+    
 
     img {
       width: 60%;
@@ -473,30 +482,33 @@
           <source src="videos/Check User Info.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video></div>
-
+<div class="step">
+  <p><strong> Steps to view the User Details</strong> </p>
       <p>
-        To view the user details of this design, please click on the three
+       Step 1. To view the user details of this design, please click on the three
         lines.
       </p>
       <div style="text-align: center;">
         <img src="user image 1.png" alt="User Details" class="img">
       </div>
       <p>
-        The subsequent section provides a clear presentation of the user's
+       Step 2. The subsequent section provides a clear presentation of the user's
         details, specifically highlighting Embry Maynard as the registered
         user.
       </p>
       <div style="text-align: center;">
         <img src="user image 2.png" alt="User Details" class="img">
       </div>
-
+</div>
       <h3>Elevation Layer Details Overview</h3>
       <div style="text-align: center;"><video id="myVideo" width="60%"  controls>
           <source src="videos/Elevation Layer Details.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video></div>
+        <div class="step">
+  <p><strong> Steps to view the Elevation Layer Details :</strong> </p>
       <p>
-        To access the complete specifications for our house, which encompass
+      Step 1. To access the complete specifications for our house, which encompass
         details about colour, structure, and texture, please click on the
         layer icon highlighted within the red box.
       </p>
@@ -504,12 +516,13 @@
         <img src="elevation layer 1.png" alt="User Details" class="img">
       </div>
       <p>
-        This will provide a comprehensive overview of all the design elements
+       Step 2. This will provide a comprehensive overview of all the design elements
         and materials used throughout the property, ensuring that everything
         aligns with our vision and requirements.
       </p>
       <div style="text-align: center;">
         <img src="elevation layer 2.png" alt="User Details" class="img">
+      </div>
       </div>
     </section>
     <hr>
@@ -565,14 +578,17 @@
           <source src="videos/Search layer.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video></div>
+        <div class="step">
+        
+  <p><strong> Steps to do Search Layer Functionality :</strong> </p>
       <p>
-        The users can easily select a specific option, such as trims, and subsequently apply their search to swiftly
+      Step 1. The users can easily select a specific option, such as trims, and subsequently apply their search to swiftly
         locate the desired layer.
       </p>
       <div style="text-align: center;">
         <img src="search layer 1.png" alt="User Details" class="img">
       </div>
-
+</div>
       <p>
         This streamlined process enhances user experience by making it easier to locate and apply specific layers within
         the application.
@@ -597,14 +613,13 @@
           Your browser does not support the video tag.
         </video></div>
      
-
-      <div class="step">
+<div class="step"><div >
         <p>Step 1: Click on the 'Scheme' button to proceed</p>
         <div style="text-align: center;">
           <img src="customizing 1.png" alt="customizing 1" class="img">
         </div>
       </div>
-      <div class="step">
+      <div >
         <p>
           Step 2: Next, click on the desired elevation to select it for
           further adjustments
@@ -613,7 +628,7 @@
           <img src="customizing 2.png" alt="customizing 2" class="img">
         </div>
       </div>
-      <div class="step">
+      <div >
         <p>
           Step 3: To make changes to this elevation, click on the 'Modify'
           option
@@ -622,7 +637,7 @@
           <img src="customizing 3.png" alt="customizing 3" class="img">
         </div>
       </div>
-      <div class="step">
+      <div >
         <p>
          Step 4: Now, on the Stucco layer, select the desired option.
         </p>
@@ -630,7 +645,7 @@
           <img src="customizing 4.png" alt="customizing 4" class="img">
         </div>
       </div>
-      <div class="step">
+      <div >
         <p>
           Step 5: Now, click on the 'Trim' option to proceed and select the
           desired layer
@@ -639,7 +654,7 @@
           <img src="customizing 5.png" alt="customizing 5" class="img">
         </div>
       </div>
-      <div class="step">
+      <div>
         <p>
           Step 6: We can also manually add the option. To do this, click on
           the 'Add Layer' option
@@ -648,7 +663,7 @@
           <img src="customizing 6.png" alt="customizing 6" class="img">
         </div>
       </div>
-      <div class="step">
+      <div >
         <p>
           Step 7: Three options will appear: Google Library, Library, and Add
           New Layer. Select the 'Add New Layer' button
@@ -657,7 +672,7 @@
           <img src="customizing 7.png" alt="customizing 7" class="img">
         </div>
       </div>
-      <div class="step">
+      <div >
         <p>
          Step 8: If you want to upload from your local device click on choose file.
         </p>
@@ -665,7 +680,7 @@
           <img src="customizing 8.png" alt="customizing 8" class="img">
         </div>
       </div>
-      <div class="step">
+      <div >
         <p>
           Step 9: Select image from your local directory and click open.
         </p>
@@ -673,7 +688,7 @@
           <img src="customizing 9.png" alt="customizing 9" class="img">
         </div>
       </div>
-      <div class="step">
+      <div >
         <p>
           Step 10: Give Layer Name, Product Code, and Manufacturer Name as desired.
         </p>
@@ -681,7 +696,7 @@
           <img src="customizing 10.png" alt="customizing 10" class="img">
         </div>
       </div>
-      <div class="step">
+      <div>
         <p>
           Step 11: If you want to use color from your screen select color picker.
         </p>
@@ -689,7 +704,7 @@
           <img src="customizing 11.png" alt="customizing 11" class="img">
         </div>
       </div>
-      <div class="step">
+      <div >
         <p>
           Step 12: After selecting the desired color from your local device or color picker, click on the save layer
           option to save the layer.
@@ -698,14 +713,16 @@
           <img src="customizing 12.png" alt="customizing 12" class="img">
         </div>
       </div>
-      <div class="step">
+      <div >
         <p>
           Step 13: Now, click on the option that we uploaded, and the changes will be reflected
         </p>
         <div style="text-align: center;">
           <img src="customizing 13.png" alt="customizing 13" class="img">
         </div>
-
+</div>
+</div>
+      
 
         <h3>Adding and Saving Layers</h3>
 
@@ -716,14 +733,14 @@
             <source src="videos/Save as a scheme.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video></div>
-
-        <div class="step">
+<div class="step">
+  <p style="margin-top: 0px;"><strong>Steps to Add new Scheme :</strong></p><div >
           <p>Step 1: Click on "Save as Colour Scheme".</p>
           <div style="text-align: center;">
             <img src="adding and saving layer 1.png" alt="adding and saving layer 1" class="img">
           </div>
         </div>
-        <div class="step">
+        <div >
           <p>
             Step 2: A pop-up window will appear. Provide a suitable title and a
             brief description for your new color scheme. You will see two
@@ -734,7 +751,7 @@
             <img src="adding and saving layer 2.png" alt="adding and saving layer 2" class="img">
           </div>
         </div>
-        <div class="step">
+        <div >
           <p>
             Step 3: Once the scheme is saved, you can verify it by clicking on
             the "Scheme" button to view your saved configuration.
@@ -743,7 +760,7 @@
             <img src="adding and saving layer 3.png" alt="adding and saving layer 3" class="img">
           </div>
         </div>
-        <div class="step">
+        <div >
           <p>
             Step 4: Click on the scheme you just created to either apply it or
             review its settings.
@@ -752,27 +769,27 @@
             <img src="adding and saving layer 4.png" alt="adding and saving layer 4" class="img">
           </div>
         </div>
-
+</div>
+        
 
         <h3>Google Library Integration</h3>
         <div style="text-align: center;"><video id="myVideo" width="60%"  controls>
             <source src="videos/Google Library.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video></div>
-
-        <div class="step">
+<div class="step"><p style="margin-top: 0px;"><strong>Steps to add new layer from Google Library :</strong></p><div >
           <p>Step 1: To get started, click on the 'Add Layer' option.</p>
           <div style="text-align: center;">
             <img src="google library 1.png" alt="google library 1" class="img">
           </div>
         </div>
-        <div class="step">
+        <div >
           <p>Step 2: Three options will appear: Google Library, Library, and Add New Layer then Click on the 'Google Library' option.</p>
           <div style="text-align: center;">
             <img src="google library 2.png" alt="google library 2" class="img">
           </div>
         </div>
-        <div class="step">
+        <div >
           <p>
            Step 3: Now search the option you want to add as desired.
           </p>
@@ -780,7 +797,7 @@
             <img src="google library 3.png" alt="google library 3" class="img">
           </div>
         </div>
-        <div class="step">
+        <div >
           <p>
             Step 4: Next, choose the Stucco type that you find most appealing.
           </p>
@@ -788,7 +805,7 @@
             <img src="google library 5.png" alt="google library 5" class="img">
           </div>
         </div>
-        <div class="step">
+        <div >
           <p>
             Step 5: Now give the Layer Name, Product Code, Manufacturer Name as desired and then to save the layer, click on the "Save Layer" option.
           </p>
@@ -796,13 +813,13 @@
             <img src="google library 6.png" alt="google library 6" class="img">
           </div>
         </div>
-        <div class="step">
+        <div >
           <p>Step 6: The newly added layer has been successfully saved and is now accessible under the Stucco option for future use.</p>
         </div>
         <div style="text-align: center;">
           <img src="google library 7.png" alt="google library 7" class="img">
         </div>
-        <div class="step">
+        <div >
           <p>
             Step 7: To see the changes that have been applied, click on the uploaded layer located in the Stucco section.
           </p>
@@ -810,6 +827,8 @@
             <img src="google library 8.png" alt="google library 8" class="img">
           </div>
         </div>
+</div>
+        
     </section>
     <hr>
 
@@ -822,8 +841,7 @@
           Your browser does not support the video tag.
         </video></div>
     
-
-      <div class="step">
+<div class="step"> <p style="margin-top: 0px;"><strong>Steps to Bulk Upload : </strong></p><div >
         <p>
           Step 1: Click on the "Manage Layer" option to access the bulk upload
           feature.
@@ -832,13 +850,13 @@
           <img src="Bulk Upload 1.png" alt="Bulk Upload 1" class="img">
         </div>
       </div>
-      <div class="step">
+      <div >
         <p>Step 2: Select the bulk upload option.</p>
         <div style="text-align: center;">
           <img src="Bulk Upload 2.png" alt="Bulk Upload 2" class="img">
         </div>
       </div>
-      <div class="step">
+      <div >
         <p>
           Step 3: Upload the CSV file by either using the "Select CSV File"
           option or by dragging and dropping the file.
@@ -847,12 +865,13 @@
           <img src="Bulk Upload 3.png" alt="Bulk Upload 3" class="img">
         </div>
       </div>
-      <div class="step">
+      <div >
         <p>Step 4: Finally, click on "Continue" to save your upload.</p>
       </div>
       <div style="text-align: center;">
         <img src="Bulk Upload 4.png" alt="Bulk Upload 4" class="img">
-      </div>
+      </div></div>
+      
     </section>
     <hr>
     
@@ -863,8 +882,8 @@
           <source src="videos/Send Inquiry.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video></div>
-      <p>
-        To send an inquiry, click on the button labeled "send inquiry," which
+        <div class="step"><p style="margin-top: 0px;"><strong>Steps to Send Inquiry :</strong></p><p>
+       Step 1: To send an inquiry, click on the button labeled "send inquiry," which
         is located below the image and highlighted with a red color border.
       </p>
       <div style="text-align: center;">
@@ -872,18 +891,17 @@
       </div>
 
       <p>
-        If you have any questions or concerns regarding bugs or potential
+        Step 2: If you have any questions or concerns regarding bugs or potential
         enhancements, we encourage you to submit your inquiries by entering
-        your query in the space provided below.
-      </p>
-
-      <p>
-        To proceed, simply type your question in the designated area and then
+        your query in the space provided below. To proceed, simply type your question in the designated area and then
         click the submit button.
       </p>
+
+     
       <div style="text-align: center;">
         <img src="Send Enquiry 2.png" alt="Send Enquiry 2" class="img">
-      </div>
+      </div></div>
+      
     </section>
   </div>
   <script>
