@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="images/ule 360 logo.png" />
+    <title>Visualizer Documentation</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="ule 360 logo.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ULE 360 Visualizer Documentation</title> 
-  <style>
-    /* 1. Theme variables */
+    <style>
+    /* Enhanced Theme Variables */
     :root {
       --font-family: 'Roboto', Arial, sans-serif;
       --bg-color: #ffffff;
@@ -17,27 +20,37 @@
       --sidebar-text: #ecf0f1;
       --sidebar-hover: #34495e;
       --sidebar-active: #3498db;
-      --link-color: #333;
-      --link-hover: #ddd;
-      --active-link-bg: #2c3e50;
-      --active-link-color: white;
-      --step-bg: #f9f9f9;
+      --link-color: #3498db;
+      --link-hover: #2980b9;
+      --active-link-bg: rgba(52, 152, 219, 0.2);
+      --active-link-color: #3498db;
+      --step-bg: #f8fafc;
       --step-border: #3498db;
       --header-height: 80px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    /* Enhanced Theme Switch */
     .theme-switch-wrapper {
       position: fixed;
       top: 20px;
       right: 20px;
       z-index: 1100;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-switch-label {
+      color: var(--sidebar-text);
+      font-size: 0.9rem;
     }
 
     .theme-switch {
       position: relative;
       display: inline-block;
-      width: 60px;
-      height: 34px;
+      width: 64px;
+      height: 36px;
     }
 
     .theme-switch input {
@@ -53,47 +66,61 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: #ccc;
-      transition: 0.4s;
-      border-radius: 34px;
+      background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+      transition: var(--transition);
+      border-radius: 36px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 
     .slider:before {
       position: absolute;
-      content: "";
-      height: 26px;
-      width: 26px;
+      content: "☀️";
+      height: 28px;
+      width: 28px;
       left: 4px;
       bottom: 4px;
       background-color: white;
-      transition: 0.4s;
+      transition: var(--transition);
       border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
     }
 
     /* Checked state (Dark Mode) */
     input:checked + .slider {
-      background-color: #2c3e50;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
 
     input:checked + .slider:before {
-      transform: translateX(26px);
+      transform: translateX(28px);
+      content: "🌙";
     }
 
+    /* Dark Mode Variables */
     [data-theme="dark"] {
       --bg-color: #121212;
       --text-color: #ffffff;
       --sidebar-bg: #1e1e1e;
-      --sidebar-text: #cccccc;
+      --sidebar-text: #e0e0e0;
       --sidebar-hover: #333;
       --sidebar-active: #3498db;
-      --link-color: #cccccc;
-      --link-hover: #333;
-      --active-link-bg: #3498db;
-      --active-link-color: #fff;
+      --link-color: #63b3ed;
+      --link-hover: #90cdf4;
+      --active-link-bg: rgba(52, 152, 219, 0.3);
+      --active-link-color: #63b3ed;
       --step-bg: #1f1f1f;
-      --step-border: #3498db;
+      --step-border: #63b3ed;
     }
 
+    /* Smooth transitions for theme change */
+    body {
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Rest of your existing CSS remains the same */
     html {
       scroll-behavior: smooth;
       scroll-padding-top: var(--header-height);
@@ -121,7 +148,7 @@
       padding: 20px 0;
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
       z-index: 1000;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
     #sidebar h2 {
@@ -140,7 +167,7 @@
     #sidebar li {
       padding: 10px 20px;
       border-left: 4px solid transparent;
-      transition: all 0.3s;
+      transition: all 0.3s, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     #sidebar li a {
@@ -153,11 +180,21 @@
     #sidebar li:hover {
       background-color: var(--sidebar-hover);
       border-left: 4px solid var(--sidebar-active);
+      transform: scale(0.95);
+      z-index: 2;
+    }
+
+    #sidebar li:active {
+      transform: scale(0.92);
     }
 
     #sidebar li.active {
-      background-color: var(--sidebar-hover);
+      background-color: var(--active-link-bg);
       border-left: 4px solid var(--sidebar-active);
+    }
+
+    #sidebar li.active a {
+      color: var(--active-link-color);
     }
 
     #mobile-menu-btn {
@@ -179,7 +216,7 @@
       margin-left: 250px;
       padding: 20px;
       flex: 1;
-      transition: margin-left 0.3s ease;
+      transition: margin-left 0.3s ease, background-color 0.3s ease;
     }
 
     section {
@@ -188,6 +225,7 @@
       background-color: var(--bg-color);
       border-radius: 5px;
       scroll-margin-top: var(--header-height);
+      transition: background-color 0.3s ease;
     }
 
     h1 {
@@ -199,30 +237,31 @@
       width: calc(100% - 250px);
       background-color: var(--bg-color);
       z-index: 100;
-      
       height: var(--header-height);
       display: flex;
       align-items: center;
+      transition: background-color 0.3s ease;
     }
 
     h2 {
       font-size: 1.5rem;
       margin-top: 4px;
-      
       color: var(--text-color);
-       margin-bottom: 10px;
-        border-bottom: 5px solid #2c3e50;
+      margin-bottom: 10px;
+      border-bottom: 5px solid #2c3e50;
     }
 
     h3 {
       font-size: 1.2rem;
       margin-top: 2px;
       margin-bottom: 1px;
+      color: var(--text-color);
     }
 
     p, li {
       font-size: 1rem;
       margin-bottom: 5px;
+      color: var(--text-color);
     }
 
     .image-placeholder,
@@ -234,13 +273,14 @@
       border: 1px dashed #ccc;
     }
 
-    .step {
+    .steps {
       margin: 15px 0;
       padding: 15px;
       background-color: var(--step-bg);
       border-radius: 4px;
       border-left: 3px solid var(--step-border);
       color: var(--text-color);
+      transition: background-color 0.3s ease;
     }
     
     .logo {
@@ -252,11 +292,8 @@
 
     img, video {
       max-width: 100%;
-      
-      
       margin: 15px auto;
       border-radius: 4px;
-    
     }
 
     video {
@@ -266,7 +303,8 @@
     hr {
       border: 0;
       height: 1px;
-      background-color: #ddd;
+      background-color: var(--text-color);
+      opacity: 0.1;
       margin: 3px 0;
     }
 
@@ -329,7 +367,6 @@
 
       section {
         padding: 15px;
-       
       }
 
       .theme-switch-wrapper {
@@ -369,6 +406,7 @@
       .slider:before {
         height: 20px;
         width: 20px;
+        font-size: 12px;
       }
       
       input:checked + .slider:before {
@@ -376,22 +414,21 @@
       }
     }
   </style>
-</head>
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <button id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+    <div id="sidebar">
+      <img src="ule-logo-white.png" alt="ULE Logo" class="logo" />
 
-<body>
-  <!-- Mobile Menu Button -->
-  <button id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
-  
-  <!-- Sidebar with Table of Contents -->
-  <div id="sidebar">
-    <img src="ule-logo.png" alt="ULE Logo" class="logo">
-    <h2>Table of Contents</h2>
-    <div class="theme-switch-wrapper">
-      <label class="theme-switch" for="themeToggle" aria-label="Toggle dark mode">
-        <input type="checkbox" id="themeToggle" />
-        <span class="slider"></span>
-      </label>
-    </div>
+      <h2>Table of Contents</h2>
+      <div class="theme-switch-wrapper">
+       
+        <label class="theme-switch">
+          <input type="checkbox" id="themeToggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
 
     <ul>
       <li><a href="#introduction">Introduction</a></li>
